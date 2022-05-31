@@ -1,31 +1,58 @@
 <html>
 
 <head>
-
+	<meta charset="utf-8">
+	<title> Physics Game </title>
 </head>
 
 <body>
 
-<div>
+<div style="height: 100px">
 Prompt goes here
 </div>
 
-<div>
+<div style="float: left; height: 750px; width: 60%">
 Diagram of capacitor goes here
 </div>
 
-<div>
-Sliders, checkboxes, etc. go here
+<div style="float: right; height: 250px; width: 40%">
+<div class="container_slider">
+	Electric field
+	<br>
+	<input type="range" min="-100" max="100" value="0" class="slider" id="electric_field_slider">
+	<input type="checkbox" id="electric_field_box">
+</div>
+<div class="container_slider">
+	Magnetic field
+	<br>
+	<input type="range" min="-100" max="100" value="0" class="slider" id="magnetic_field_slider">
+	<input type="checkbox" id="magnetic_field_box">
+</div>
+<div class="container_slider">
+	Charge
+	<br>
+	<input type="range" min="-1" max="1" value="0" class="slider" id="charge_slider">
+</div>
+<div class="container_slider">
+	Velocity
+	<br>
+	<input type="range" min="-100" max="100" value="0" class="slider" id="velocity_slider">
+</div>
+<div class="container_slider">
+	Show trajectory
+	<input type="checkbox" id="show_trajectory">
+	<!-- Testing Button -->
+	<button onclick="test()"> Test </button>
+</div>
+<div class="values">
+	<p> Electric Field: <span id='efo'></span> </p>
+	<p> Magnetic Field: <span id='mfo'></span></p>
+	<p> Charge: <span id='co'></span></p>
+	<p> Velocity: <span id='vo'></span></p>
+</div>
 </div>
 
-<div>
-Vertical displacement graph goes here
-</div>
-
-<div>
-Help menu? Other helpful widgets?
-</div>
-
+<script src="main.js"> </script>
 </body>
 
 </html>
