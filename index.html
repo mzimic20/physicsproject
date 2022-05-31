@@ -2,16 +2,17 @@
 
 <head>
 	<meta charset="utf-8">
+	<link href="style.css" rel="stylesheet">
 	<title> Physics Game </title>
 </head>
 
 <body>
 
 <div style="height: 100px">
-Prompt goes here
+	<p id="question"> Prompt goes here </p>
 </div>
 
-<div style="float: left; height: 750px; width: 60%">
+<div style="float: left; height: 750px; width: 60%; text-align: center">
 Diagram of capacitor goes here
 </div>
 
@@ -49,14 +50,10 @@ Diagram of capacitor goes here
 	<p> Magnetic Field: <span id='mfo'></span></p>
 	<p> Charge: <span id='co'></span></p>
 	<p> Velocity: <span id='vo'></span></p>
+	<button onclick="submit()"> Submit </button>
 </div>
 </div>
-<div class="container_slider">
-	Show trajectory
-	<input type="checkbox" id="show_trajectory">
 </div>
-</div>
-
 
 <script src="main.js"> </script>
 </body>
