@@ -1,7 +1,7 @@
 #container {
 	float: left;
 	height: 400px;
-	width: 60%;
+	width: 800px;
 	background-image: url("capacitor.jpg");
 	background-size: cover;
 }
