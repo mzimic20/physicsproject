@@ -2,6 +2,8 @@
 	float: left;
 	height: 400px;
 	width: 60%;
+	background-image: url("capacitor.jpg");
+	background-size: cover;
 }
 
 #animation {
@@ -11,4 +13,6 @@
 	display: inline-block;
 	position: absolute;
 	background-color: black;
+	top: 300px;
+	left: 25px;
 }
