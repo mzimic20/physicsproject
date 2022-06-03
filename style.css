@@ -1,4 +1,22 @@
 #question {
     text-align: center;
     padding-top: 30px;
+
+#container {
+	float: left;
+	height: 400px;
+	width: 800px;
+	background-image: url("capacitor.jpg");
+	background-size: cover;
+}
+
+#animation {
+	height: 10px;
+	width: 10px;
+	border-radius: 50%;
+	display: inline-block;
+	position: absolute;
+	background-color: black;
+	top: 300px;
+	left: 25px;
 }
