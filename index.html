@@ -1,48 +1,55 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-
+	<title>Velocity Selector</title>
+	<script src="index.js"></script>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div style="height: 100px">
-Prompt goes here
-</div>
+	<div style="height: 100px;">
+		Prompt goes here
+	</div>
 
-<div style="float: left; height: 750px; width: 60%">
-Diagram of capacitor goes here
-</div>
+	<div id="container">
+		<div id="animation">
+		</div>
+	</div>
 
-<div style="float: right; height: 250px; width: 40%">
-<div class="container_slider">
-	Electric field
-	<br>
-	<input type="range" min="-100" max="100" value="0" class="slider" id="electric_field_slider">
-	<input type="checkbox" id="electric_field_box">
-</div>
-<div class="container_slider">
-	Magnetic field
-	<br>
-	<input type="range" min="-100" max="100" value="0" class="slider" id="magnetic_field_slider">
-	<input type="checkbox" id="magnetic_field_box">
-</div>
-<div class="container_slider">
-	Charge
-	<br>
-	<input type="range" min="-1" max="1" value="0" class="slider" id="charge_slider">
-</div>
-<div class="container_slider">
-	Velocity
-	<br>
-	<input type="range" min="-100" max="100" value="0" class="slider" id="velocity_slider">
-</div>
-<div class="container_slider">
-	Show trajectory
-	<input type="checkbox" id="show_trajectory">
-</div>
-</div>
-
+	<div style="float: right; height: 250px; width: 250px;">
+		<div>
+			Electric field
+			<br>
+			<input type="range" min="-100" max="100" value="0" class="slider" id="electric_field_slider">
+			<input type="checkbox" id="electric_field_checkbox">
+		</div>
+		<div>
+			Magnetic field
+			<br>
+			<input type="range" min="-100" max="100" value="0" class="slider" id="magnetic_field_slider">
+			<input type="checkbox" id="magnetic_field_checkbox">
+		</div>
+		<div>
+			Charge
+			<br>
+			<input type="range" min="-1" max="1" value="0" class="slider" id="charge_slider">
+		</div>
+		<div>
+			Velocity
+			<br>
+			<input type="range" min="1" max="100" value="1" class="slider" id="velocity_slider">
+		</div>
+		<div>
+			<input type="checkbox" id="trajectory_checkbox">
+			Show trajectory
+		</div>
+		<div>
+			<button id="run" onclick="run()">Run</button>
+			<button id="reset" onclick="reset()">Reset</button>
+		</div>
+	</div>
 
 </body>
 
