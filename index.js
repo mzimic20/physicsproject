@@ -22,7 +22,7 @@ function run() {
 	id = setInterval(frame, 5);
 	function frame() {
 //		stop animation
-		if (posx >= 1100 || posy <= 100 || posy >= 500) {
+		if (posx >= 900 || posy <= 147 || posy >= 465) {
 			clearInterval(id);
 		}
 		else {
@@ -37,7 +37,7 @@ function run() {
 }
 
 function reset() {
-	let elem = document.getElementById("animation");
+	const elem = document.getElementById("animation");
 	elem.style.top = "300px";
 	elem.style.left = "25px";
 }
