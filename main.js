@@ -31,24 +31,15 @@ velocitySlider.oninput = function() {
     velocity.innerHTML = this.value;
 }
 
+// use this button to test features, delete later
 function test() {
     alert(velocitySlider.value);
 }
 
-// Bare Bones Outline
-// Generate random ef, mf and corresponding correct velocity x
-// Display question on website containing these variables x
-// Compare user input (via sliders) to correct answer x
-// Alert if they are correct or wrong x
-// After, display nicer way to show if they are correct - kind of
-// Add button to go on to new question - kind of
-// Add different kinds of questions
-// Incorporate animation
-// Fix sliders to values given in question. Also add nicer way to input and view variables.
-
+// blocks next button until question is correctly answered
 document.getElementById('next').disabled = true;
 
-
+// randomly generates one of three questions
 function generateQuestion() {
     var var1 = Math.floor(Math.random() * 50 + 1);
     var var2 = Math.floor(Math.random() * 10 + 1);
@@ -66,11 +57,10 @@ function generateQuestion() {
     // given mf, v, find ef
     if (questionType == 2) {
         var answer = (var1 * var2).toFixed(1);
-        var question = `Magnetic Field is ${var1} T. Velocity is ${var2} m/s. The particle is to be shot in a straight line. What should the electric field be? Answer is ${answer} m/s`;
+        var question = `Magnetic Field is ${var1} T. Velocity is ${var2} m/s. The particle is to be shot in a straight line. What should the electric field be? Answer is ${answer} N/C`;
     }
     return [question, answer, questionType]  
 }
-
 
 function checkApprox(num1, num2, epsilon) {
     if (Math.abs(num1 - num2) <= epsilon) {
@@ -116,3 +106,4 @@ function submit() {
 }
 
 // need to deal with direction of electric and magnetic field lines
+// add scoreboard, new levels
