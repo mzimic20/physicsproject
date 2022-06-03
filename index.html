@@ -20,13 +20,13 @@ Diagram of capacitor goes here
 <div class="container_slider">
 	Electric field
 	<br>
-	<input type="range" min="-100" max="100" value="0" class="slider" id="electric_field_slider">
+	<input type="range" min="-200" max="200" value="0" class="slider" id="electric_field_slider">
 	<input type="checkbox" id="electric_field_box">
 </div>
 <div class="container_slider">
 	Magnetic field
 	<br>
-	<input type="range" min="-100" max="100" value="0" class="slider" id="magnetic_field_slider">
+	<input type="range" min="-200" max="200" value="0" class="slider" id="magnetic_field_slider">
 	<input type="checkbox" id="magnetic_field_box">
 </div>
 <div class="container_slider">
@@ -37,7 +37,7 @@ Diagram of capacitor goes here
 <div class="container_slider">
 	Velocity
 	<br>
-	<input type="range" min="-100" max="100" value="0" class="slider" id="velocity_slider">
+	<input type="range" min="-200" max="200" value="0" class="slider" id="velocity_slider">
 </div>
 <div class="container_slider">
 	Show trajectory
@@ -51,11 +51,18 @@ Diagram of capacitor goes here
 	<p> Charge: <span id='co'></span></p>
 	<p> Velocity: <span id='vo'></span></p>
 	<button onclick="submit()"> Submit </button>
+	<!-- This next button will  not scale up to having more levels -->
+	<button onclick="document.location.reload(true)" id="next"> Next </button>
 </div>
 </div>
-</div>
+<div class="results">
+	<!-- This needs to be better formatted -->
+	<h3  style="text-align: center;" id="result"> </h3>
+</div>	
 
 <script src="main.js"> </script>
 </body>
 
 </html>
+
+<!-- document.location.reload(true) -->

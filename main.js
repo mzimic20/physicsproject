@@ -36,22 +36,40 @@ function test() {
 }
 
 // Bare Bones Outline
-// Generate random ef, mf and corresponding correct velocity
-// Display question on website containing these variables.
-// Compare user input (via sliders) to correct answer
-// Alert if they are correct or wrong
-// After, display nicer way to show if they are correct
-// Add button to go on to new question
+// Generate random ef, mf and corresponding correct velocity x
+// Display question on website containing these variables x
+// Compare user input (via sliders) to correct answer x
+// Alert if they are correct or wrong x
+// After, display nicer way to show if they are correct - kind of
+// Add button to go on to new question - kind of
 // Add different kinds of questions
 // Incorporate animation
 // Fix sliders to values given in question. Also add nicer way to input and view variables.
 
-// Maybe make a number generator to only generate numbers with integer answers
-var ef = Math.floor(Math.random() * 100 + 1);
-var mf = Math.floor(Math.random() * 10 + 1);
-var answer = (ef / mf).toFixed(1);
-var question = `Electric Field is ${ef} N/C. Magnetic Field is ${mf} T. The particle is to be shot in a straight line. What initial velocity should it have? Answer is ${answer} m/s`;
-document.getElementById('question').innerHTML = question
+document.getElementById('next').disabled = true;
+
+
+function generateQuestion() {
+    var var1 = Math.floor(Math.random() * 50 + 1);
+    var var2 = Math.floor(Math.random() * 10 + 1);
+    var questionType = Math.floor(Math.random() * 3);
+    // given ef, mf, find v
+    if (questionType == 0) {
+        var answer = (var1 / var2).toFixed(1);
+        var question = `Electric Field is ${var1} N/C. Magnetic Field is ${var2} T. The particle is to be shot in a straight line. What initial velocity should it have? Answer is ${answer} m/s`;
+    }
+    // given ef, v, find mf
+    if (questionType == 1) {
+        var answer = (var1 / var2).toFixed(1);
+        var question = `Electric Field is ${var1} N/C. Velocity is ${var2} m/s. The particle is to be shot in a straight line. What should the magnetic field be? Answer is ${answer} T`;
+    }
+    // given mf, v, find ef
+    if (questionType == 2) {
+        var answer = (var1 * var2).toFixed(1);
+        var question = `Magnetic Field is ${var1} T. Velocity is ${var2} m/s. The particle is to be shot in a straight line. What should the electric field be? Answer is ${answer} m/s`;
+    }
+    return [question, answer, questionType]  
+}
 
 
 function checkApprox(num1, num2, epsilon) {
@@ -60,29 +78,41 @@ function checkApprox(num1, num2, epsilon) {
     }
 }
 
+questionInfo = generateQuestion()
+let question = questionInfo[0]
+let answer = questionInfo[1]
+let questionType = questionInfo[2]
+document.getElementById('question').innerHTML = question
+
+// this is kind of ugly but it works
 function submit() {
-    if (checkApprox(velocitySlider.value, answer, 2)) {
-        alert('Correct! Refresh the page to try again!');
-    } else {
-        alert('Incorrect! ' + 'Your answer: ' + velocitySlider.value + ' Correct Answer: ' + answer);
+    if (questionType == 0) {
+        if (checkApprox(velocitySlider.value, answer, 2)) {
+            document.getElementById('result').innerHTML = 'Correct!';
+            document.getElementById('next').disabled = false;
+        } else {
+            document.getElementById('result').innerHTML = 'Incorrect :(';
+            // alert('Incorrect! ' + 'Your answer: ' + velocitySlider.value + ' Correct Answer: ' + answer);
+        }
     }
+    if (questionType == 1) {
+        if (checkApprox(magneticFieldSlider.value, answer, 2)) {
+            document.getElementById('result').innerHTML = 'Correct!';
+            document.getElementById('next').disabled = false;
+        } else {
+            document.getElementById('result').innerHTML = 'Incorrect :(';
+            // alert('Incorrect! ' + 'Your answer: ' + velocitySlider.value + ' Correct Answer: ' + answer);
+        }
+    }
+    if (questionType == 2) {
+        if (checkApprox(electricFieldSlider.value, answer, 2)) {
+            document.getElementById('result').innerHTML = 'Correct!';
+            document.getElementById('next').disabled = false;
+        } else {
+            document.getElementById('result').innerHTML = 'Incorrect :(';
+            // alert('Incorrect! ' + 'Your answer: ' + velocitySlider.value + ' Correct Answer: ' + answer);
+        }
+    } 
 }
 
-
-// var electricField = electricFieldSlider.value;
-// var magneticField = magneticFieldSlider.value;
-// var charge = chargeSlider.value;
-// var velocity = velocitySlider.value;
-
-// electricFieldSlider.oninput = function() {
-//     electricField = this.value;
-// }
-// magneticFieldSlider.oninput = function() {
-//     magneticField = this.value;
-// }
-// chargeSlider.oninput = function() {
-//     charge = this.value;
-// }
-// velocitySlider.oninput = function() {
-//     velocity = this.value;
-// }
+// need to deal with direction of electric and magnetic field lines
