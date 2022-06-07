@@ -41,35 +41,57 @@ document.getElementById('next').disabled = true;
 
 
 // initializes score variable in sessionStorage and displays it to test
-if (typeof sessionStorage.getItem('score') == 'undefined') {
-    let score = 0;
+// there's a problem here, before one answer is answered correctly, Score: null is displayed
+if (typeof sessionStorage.getItem('score') == null) {
+    var score = 0;
     sessionStorage.setItem('score', score);
-    document.getElementById('testing').innerHTML = score;
+    document.getElementById('testing').innerHTML = "Score: 0";
 } else {
     score = sessionStorage.getItem('score');
-    document.getElementById('testing').innerHTML = score;
+    document.getElementById('testing').innerHTML = "Score: " + score;
 }
 
 // randomly generates one of three questions
-// adjust code to generate cleaner numbers
 function generateQuestion() {
-    var var1 = Math.floor(Math.random() * 50 + 1);
-    var var2 = Math.floor(Math.random() * 10 + 1);
     var questionType = Math.floor(Math.random() * 3);
-    // given ef, mf, find v
+    // given e, b, find v
     if (questionType == 0) {
-        var answer = (var1 / var2).toFixed(1);
-        var question = `Electric Field is ${var1} N/C. Magnetic Field is ${var2} T. The particle is to be shot in a straight line. What initial velocity should it have? Answer is ${answer} m/s`;
+        var answer = Math.floor(Math.random() * 100 + 5); // v
+        var b = Math.floor(Math.random() * (200/answer) + 1);
+        var e = b * answer;
+        var question = `Electric Field is ${e} N/C. Magnetic Field is ${b} T. The particle is to be shot in a straight line. What initial velocity should it have? Answer is ${answer} m/s`;
+        electricFieldSlider.value = e;
+        magneticFieldSlider.value = b;
+        electricField.innerHTML = e;
+        magneticField.innerHTML = b;
+        document.getElementById('electric_field_slider').disabled = true;
+        document.getElementById('magnetic_field_slider').disabled = true;
     }
-    // given ef, v, find mf
+    // given e, v, find b
     if (questionType == 1) {
-        var answer = (var1 / var2).toFixed(1);
-        var question = `Electric Field is ${var1} N/C. Velocity is ${var2} m/s. The particle is to be shot in a straight line. What should the magnetic field be? Answer is ${answer} T`;
+        var answer = Math.floor(Math.random() * 50 + 1); // b 
+        var e = Math.floor(Math.random() * 200 + 1); 
+        var v = (e / answer).toFixed(2);
+        var question = `Electric Field is ${e} N/C. Velocity is ${v} m/s. The particle is to be shot in a straight line. What should the magnetic field be? Answer is ${answer} T`;
+        electricFieldSlider.value = e;
+        velocitySlider.value = v;
+        electricField.innerHTML = e;
+        velocity.innerHTML = v;
+        document.getElementById('electric_field_slider').disabled = true;
+        document.getElementById('velocity_slider').disabled = true;
     }
-    // given mf, v, find ef
+    // given b, v, find e
     if (questionType == 2) {
-        var answer = (var1 * var2).toFixed(1);
-        var question = `Magnetic Field is ${var1} T. Velocity is ${var2} m/s. The particle is to be shot in a straight line. What should the electric field be? Answer is ${answer} N/C`;
+        var answer = Math.floor(Math.random() * 50 + 1);
+        var b = Math.floor(Math.random() * 40 + 1);
+        var v = (answer / b).toFixed(2);
+        var question = `Magnetic Field is ${b} T. Velocity is ${v} m/s. The particle is to be shot in a straight line. What should the electric field be? Answer is ${answer} N/C`;
+        magneticFieldSlider.value = b;
+        velocitySlider.value = v;
+        magneticField.innerHTML = b;
+        velocity.innerHTML = v;
+        document.getElementById('magnetic_field_slider').disabled = true;
+        document.getElementById('velocity_slider').disabled = true;
     }
     return [question, answer, questionType]  
 }
@@ -81,7 +103,7 @@ function checkApprox(num1, num2, epsilon) {
 }
 
 // generates straight line question with lower score, generates variable height question with higher score
-if (score < 3) {
+if (score < 5) {
     questionInfo = generateQuestion()
     var question = questionInfo[0]
     var answer = questionInfo[1]
@@ -101,7 +123,6 @@ function submit() {
             document.getElementById('next').disabled = false;
         } else {
             document.getElementById('result').innerHTML = 'Incorrect :(';
-            // alert('Incorrect! ' + 'Your answer: ' + velocitySlider.value + ' Correct Answer: ' + answer);
         }
     }
     if (questionType == 1) {
@@ -111,9 +132,8 @@ function submit() {
             document.getElementById('next').disabled = false;
         } else {
             document.getElementById('result').innerHTML = 'Incorrect :(';
-            // alert('Incorrect! ' + 'Your answer: ' + velocitySlider.value + ' Correct Answer: ' + answer);
-        }
     }
+}
     if (questionType == 2) {
         if (checkApprox(electricFieldSlider.value, answer, 2)) {
             sessionStorage.setItem('score', ++score);
@@ -121,10 +141,10 @@ function submit() {
             document.getElementById('next').disabled = false;
         } else {
             document.getElementById('result').innerHTML = 'Incorrect :(';
-            // alert('Incorrect! ' + 'Your answer: ' + velocitySlider.value + ' Correct Answer: ' + answer);
         }
     } 
 }
 
 // need to deal with direction of electric and magnetic field lines
-// add scoreboard, new levels
+// need cleaner numbers
+// need to write new question 
