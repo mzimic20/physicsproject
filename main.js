@@ -39,6 +39,16 @@ function test() {
 // blocks next button until question is correctly answered
 document.getElementById('next').disabled = true;
 
+
+if (typeof sessionStorage.getItem('score') == 'undefined') {
+    let score = 0;
+    sessionStorage.setItem('score', score);
+    document.getElementById('testing').innerHTML = score;
+} else {
+    score = sessionStorage.getItem('score');
+    document.getElementById('testing').innerHTML = score;
+}
+
 // randomly generates one of three questions
 function generateQuestion() {
     var var1 = Math.floor(Math.random() * 50 + 1);
@@ -68,16 +78,21 @@ function checkApprox(num1, num2, epsilon) {
     }
 }
 
-questionInfo = generateQuestion()
-let question = questionInfo[0]
-let answer = questionInfo[1]
-let questionType = questionInfo[2]
-document.getElementById('question').innerHTML = question
+if (score < 3) {
+    questionInfo = generateQuestion()
+    var question = questionInfo[0]
+    var answer = questionInfo[1]
+    var questionType = questionInfo[2]
+    document.getElementById('question').innerHTML = question;
+}   else {
+    document.getElementById('question').innerHTML = 'your mom';
+}
 
 // this is kind of ugly but it works
 function submit() {
     if (questionType == 0) {
         if (checkApprox(velocitySlider.value, answer, 2)) {
+            sessionStorage.setItem('score', ++score);
             document.getElementById('result').innerHTML = 'Correct!';
             document.getElementById('next').disabled = false;
         } else {
@@ -87,6 +102,7 @@ function submit() {
     }
     if (questionType == 1) {
         if (checkApprox(magneticFieldSlider.value, answer, 2)) {
+            sessionStorage.setItem('score', ++score);
             document.getElementById('result').innerHTML = 'Correct!';
             document.getElementById('next').disabled = false;
         } else {
@@ -96,6 +112,7 @@ function submit() {
     }
     if (questionType == 2) {
         if (checkApprox(electricFieldSlider.value, answer, 2)) {
+            sessionStorage.setItem('score', ++score);
             document.getElementById('result').innerHTML = 'Correct!';
             document.getElementById('next').disabled = false;
         } else {
