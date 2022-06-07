@@ -31,10 +31,6 @@ velocitySlider.oninput = function() {
     velocity.innerHTML = this.value;
 }
 
-function test() {
-    alert(velocitySlider.value);
-}
-
 // Bare Bones Outline
 // Generate random ef, mf and corresponding correct velocity x
 // Display question on website containing these variables x
@@ -141,7 +137,7 @@ function run() {
 	id = setInterval(frame, 5);
 	function frame() {
 //		stop animation
-		if (posx >= 900 || posy <= 147 || posy >= 465) {
+		if (posx >= 900 || posy <= 120 || posy >= 500) {
 			clearInterval(id);
 		}
 		else {
@@ -153,10 +149,4 @@ function run() {
 			elem.style.left = posx + "px";
 		}
 	}
-}
-
-function reset() {
-	const elem = document.getElementById("animation");
-	elem.style.top = "300px";
-	elem.style.left = "25px";
 }
