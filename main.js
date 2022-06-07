@@ -40,6 +40,7 @@ function test() {
 document.getElementById('next').disabled = true;
 
 
+// initializes score variable in sessionStorage and displays it to test
 if (typeof sessionStorage.getItem('score') == 'undefined') {
     let score = 0;
     sessionStorage.setItem('score', score);
@@ -50,6 +51,7 @@ if (typeof sessionStorage.getItem('score') == 'undefined') {
 }
 
 // randomly generates one of three questions
+// adjust code to generate cleaner numbers
 function generateQuestion() {
     var var1 = Math.floor(Math.random() * 50 + 1);
     var var2 = Math.floor(Math.random() * 10 + 1);
@@ -78,6 +80,7 @@ function checkApprox(num1, num2, epsilon) {
     }
 }
 
+// generates straight line question with lower score, generates variable height question with higher score
 if (score < 3) {
     questionInfo = generateQuestion()
     var question = questionInfo[0]
@@ -85,6 +88,7 @@ if (score < 3) {
     var questionType = questionInfo[2]
     document.getElementById('question').innerHTML = question;
 }   else {
+    // insert variable height question
     document.getElementById('question').innerHTML = 'your mom';
 }
 
