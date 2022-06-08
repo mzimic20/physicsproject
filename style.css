@@ -1,6 +1,7 @@
 #question {
-    text-align: center;
-    padding-top: 30px;
+	text-align: center;
+	padding-top: 30px;
+}
 
 #container {
 	float: left;
@@ -18,5 +19,5 @@
 	position: absolute;
 	background-color: black;
 	top: 300px;
-	left: 25px;
+	left: 20px;
 }

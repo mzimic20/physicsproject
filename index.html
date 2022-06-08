@@ -4,7 +4,6 @@
 <head>
 	<meta charset="utf-8">
 	<title>Velocity Selector</title>
-	<script src="index.js"></script>
 	<link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,44 +13,41 @@
 	<p id="question"> Prompt goes here </p>
 </div>
 
-<div style="float: left; height: 750px; width: 60%; text-align: center">
-Diagram of capacitor goes here
+<div id="container">
+	<div id="animation">
+	</div>
 </div>
 
-<div style="float: right; height: 250px; width: 40%">
+<div style="float: right; height: 300px; width: 300px">
 <div class="container_slider">
-	Electric field
+	Electric field <span id='efo'></span>
 	<br>
 	<input type="range" min="-200" max="200" value="0" class="slider" id="electric_field_slider">
 	<input type="checkbox" id="electric_field_box">
 </div>
 <div class="container_slider">
-	Magnetic field
+	Magnetic field <span id='mfo'></span>
 	<br>
-	<input type="range" min="-200" max="200" value="0" class="slider" id="magnetic_field_slider">
+	<input type="range" min="-50" max="50" value="0" class="slider" id="magnetic_field_slider">
 	<input type="checkbox" id="magnetic_field_box">
 </div>
 <div class="container_slider">
-	Charge
+	Charge <span id='co'></span>
 	<br>
 	<input type="range" min="-1" max="1" value="0" class="slider" id="charge_slider">
 </div>
 <div class="container_slider">
-	Velocity
+	Velocity <span id='vo'></span>
 	<br>
-	<input type="range" min="-200" max="200" value="0" class="slider" id="velocity_slider">
+	<input type="range" min="1" max="100" value="10" class="slider" id="velocity_slider">
 </div>
 <div class="container_slider">
 	Show trajectory
 	<input type="checkbox" id="show_trajectory">
 	<!-- Testing Button -->
-	<button onclick="test()"> Test </button>
-</div>
-<div class="values">
-	<p> Electric Field: <span id='efo'></span> </p>
-	<p> Magnetic Field: <span id='mfo'></span></p>
-	<p> Charge: <span id='co'></span></p>
-	<p> Velocity: <span id='vo'></span></p>
+	<br><br>
+	<button onclick="run()"> Run Simulation </button>
+	<br><br>
 	<button onclick="submit()"> Submit </button>
 	<!-- This next button will  not scale up to having more levels -->
 	<button onclick="document.location.reload(true)" id="next"> Next </button>
@@ -60,10 +56,9 @@ Diagram of capacitor goes here
 <div class="results">
 	<!-- This needs to be better formatted -->
 	<h3  style="text-align: center;" id="result"> </h3>
-	<h4 style="text-align: center;" id="testing"> </h4>
-</div>	
+</div>
 
-<script src="main.js"> </script>
+<script src="main.js"></script>
 
 </body>
 
