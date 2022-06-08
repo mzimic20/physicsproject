@@ -39,10 +39,10 @@ document.getElementById('next').disabled = true;
 if (typeof sessionStorage.getItem('score') == null) {
     var score = 0;
     sessionStorage.setItem('score', score);
-    document.getElementById('testing').innerHTML = "Score: 0";
+    document.getElementById('score').innerHTML = "Score: 0";
 } else {
     score = sessionStorage.getItem('score');
-    document.getElementById('testing').innerHTML = "Score: " + score;
+    document.getElementById('score').innerHTML = "Score: " + score;
 }
 
 // randomly generates one of three questions
