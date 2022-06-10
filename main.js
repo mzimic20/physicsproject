@@ -183,7 +183,7 @@ function run() {
 		else {
 //			move
 			t++;
-			posx += v / 5;
+			posx += v / 3;
 			posy += (Fe + Fb) * t / 7500;
 			elem.style.top = posy + "px";
 			elem.style.left = posx + "px";
