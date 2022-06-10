@@ -33,62 +33,80 @@ velocitySlider.oninput = function() {
 
 document.getElementById('next').disabled = true;
 
-
 // initializes score variable in sessionStorage and displays it to test
-// there's a problem here, before one answer is answered correctly, Score: null is displayed
-if (typeof sessionStorage.getItem('score') == null) {
+if (sessionStorage.getItem('score') == null) {
     var score = 0;
     sessionStorage.setItem('score', score);
-    document.getElementById('score').innerHTML = "Score: 0";
 } else {
     score = sessionStorage.getItem('score');
     document.getElementById('score').innerHTML = "Score: " + score;
 }
 
+function randomSign() {
+    return Math.random() < 0.5 ? -1 : 1
+}
+
 // randomly generates one of three questions
 function generateQuestion() {
     var questionType = Math.floor(Math.random() * 3);
-    // given e, b, find v
+    // given e, b, find v everything works good
     if (questionType == 0) {
         var answer = Math.floor(Math.random() * 100 + 5); // v
-        var b = Math.floor(Math.random() * (200/answer) + 1);
-        var e = b * answer;
-        var question = `Electric Field is ${e} N/C. Magnetic Field is ${b} T. The particle is to be shot in a straight line. What initial velocity should it have? Answer is ${answer} m/s`;
+        var b = Math.floor(Math.random() * (200/answer) + 1) * randomSign();
+        var e = b * answer * -1;
+        var q = randomSign();
+        var question = `Electric Field is ${e} N/C. Magnetic Field is ${b} T. The particle has charge ${q} C. The particle is to be shot in a straight line. What initial velocity should it have? Answer is ${answer} m/s`;
         electricFieldSlider.value = e;
         magneticFieldSlider.value = b;
+        chargeSlider.value = q;
         electricField.innerHTML = e;
         magneticField.innerHTML = b;
+        charge.innerHTML = q;
         document.getElementById('electric_field_slider').disabled = true;
         document.getElementById('magnetic_field_slider').disabled = true;
+        document.getElementById('charge_slider').disabled = true;
     }
-    // given e, v, find b
+    // given e, v, find b works sometimes (problem seems to be when velocity is too low)
     if (questionType == 1) {
-        var answer = Math.floor(Math.random() * 50 + 1); // b 
-        var e = Math.floor(Math.random() * 200 + 1); 
-        var v = (e / answer).toFixed(2);
-        var question = `Electric Field is ${e} N/C. Velocity is ${v} m/s. The particle is to be shot in a straight line. What should the magnetic field be? Answer is ${answer} T`;
+        var answer = Math.floor(Math.random() * 50 + 1) * randomSign(); // b 
+        // var v = Math.floor(Math.random() * 50 + 10);
+        // var e = (answer * v).toFixed(2) * (-1 * Math.sign(answer));
+        var e = Math.floor(Math.random() * 200 + 1) * (-1 * Math.sign(answer));
+        var v = Math.abs((e / answer)).toFixed(2);
+        var q = randomSign();
+        var question = `Electric Field is ${e} N/C. Velocity is ${v} m/s. The particle has charge ${q} C. The particle is to be shot in a straight line. What should the magnetic field be? Answer is ${answer} T`;
         electricFieldSlider.value = e;
         velocitySlider.value = v;
+        chargeSlider.value = q;
         electricField.innerHTML = e;
         velocity.innerHTML = v;
+        charge.innerHTML = q;
         document.getElementById('electric_field_slider').disabled = true;
         document.getElementById('velocity_slider').disabled = true;
+        document.getElementById('charge_slider').disabled = true;
     }
-    // given b, v, find e
+    // given b, v, find e works sometimes
     if (questionType == 2) {
-        var answer = Math.floor(Math.random() * 50 + 1);
-        var b = Math.floor(Math.random() * 40 + 1);
-        var v = (answer / b).toFixed(2);
-        var question = `Magnetic Field is ${b} T. Velocity is ${v} m/s. The particle is to be shot in a straight line. What should the electric field be? Answer is ${answer} N/C`;
+        var answer = -1 * Math.floor(Math.random() * 50 + 1) * randomSign(); //e
+        // var v = Math.floor(Math.random() * 50 + 10);
+        // var b = (answer / v).toFixed(2);
+        var b = Math.floor(Math.random() * 40 + 1) * (-1 * Math.sign(answer));
+        var v = Math.abs((answer / b)).toFixed(2);
+        var q = randomSign();
+        var question = `Magnetic Field is ${b} T. Velocity is ${v} m/s. The particle has charge ${q} C. The particle is to be shot in a straight line. What should the electric field be? Answer is ${answer} N/C`;
         magneticFieldSlider.value = b;
         velocitySlider.value = v;
+        chargeSlider.value = q;
         magneticField.innerHTML = b;
         velocity.innerHTML = v;
+        charge.innerHTML = q;
         document.getElementById('magnetic_field_slider').disabled = true;
         document.getElementById('velocity_slider').disabled = true;
+        document.getElementById('charge_slider').disabled = true;
     }
     return [question, answer, questionType]  
 }
+
 
 function checkApprox(num1, num2, epsilon) {
     if (Math.abs(num1 - num2) <= epsilon) {
@@ -96,17 +114,11 @@ function checkApprox(num1, num2, epsilon) {
     }
 }
 
-// generates straight line question with lower score, generates variable height question with higher score
-if (score < 5) {
-    questionInfo = generateQuestion()
-    var question = questionInfo[0]
-    var answer = questionInfo[1]
-    var questionType = questionInfo[2]
-    document.getElementById('question').innerHTML = question;
-}   else {
-    // insert variable height question
-    document.getElementById('question').innerHTML = 'your mom';
-}
+questionInfo = generateQuestion();
+var question = questionInfo[0];
+var answer = questionInfo[1];
+var questionType = questionInfo[2];
+document.getElementById('question').innerHTML = question;
 
 // this is kind of ugly but it works
 function submit() {
@@ -139,7 +151,7 @@ function submit() {
     } 
 }
 
-// need to deal with direction of electric and magnetic field lines
+
 
 function run() {
 
