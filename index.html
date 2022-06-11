@@ -14,6 +14,8 @@
 </div>
 
 <div id="container">
+	<canvas id="animationCanvas">
+	</canvas>
 	<div id="animation">
 	</div>
 </div>
@@ -43,7 +45,7 @@
 </div>
 <br>
 Show trajectory
-<input type="checkbox" id="show_trajectory">
+<input type="checkbox" id="show_trajectory" onclick="generateTrajectory()">
 <!-- Testing Button -->
 <br><br>
 <button onclick="run()"> Run Simulation </button>

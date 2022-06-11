@@ -196,3 +196,58 @@ function run() {
 		}
 	}
 }
+
+// function for Show Trajectory checkbox
+const c = document.getElementById("animationCanvas");
+const ctx = c.getContext("2d");
+ctx.canvas.width = 800;
+ctx.canvas.height = 400;
+
+function generateTrajectory() {
+    if (document.getElementById("show_trajectory").checked == true) {
+
+        // fetch slider values
+        let E = electricFieldSlider.value;
+	    let B = magneticFieldSlider.value;
+	    let q = chargeSlider.value;
+	    let v = velocitySlider.value;
+
+        //calculate forces
+        let Fe = E * q;
+        let Fb = q * v * B;
+
+        // find endpoint
+        let t = 0;
+        let posx = 20;
+        let posy = 300;
+        while ((posx <= 900) && (posy >= 120 && posy <= 500)) {
+            t++;
+            posx += v / 3;
+            posy += (Fe + Fb) * t / 7500;
+        }
+        console.log("posx: " + posx + ", posy: " + posy);
+
+        // find Bezier control point
+        // calculate slope of tangent at endpoint
+        let m = (Fe + Fb) / (1250 * v) * t;
+        console.log("m: " + m);
+
+        // find x-coordinate of control point
+        let xi = (300 - posy) / m + posx;
+        console.log("xi: " + xi);
+
+        // draw line or parabola
+        ctx.beginPath();
+        ctx.moveTo(20, 187);
+        if (xi == null) {
+            ctx.lineTo(posx, posy);
+        }
+        else {
+            ctx.quadraticCurveTo(xi, 187, posx, posy - 87);
+        }
+        ctx.stroke();
+    }
+    else {
+        ctx.clearRect(0, 0, c.width, c.height);
+    }
+}
