@@ -24,20 +24,21 @@ They can check boxes that display the electric and magnetic field lines. A paral
 A velocity selector is a region of uniform electric and magnetic field in which a charged particle will move in a 
 straight line. This happens when the magnetic force and the electric force are equal in magntidue and opposite in direction. For this to happen, the two fields and the velocity of the particle must all be perpendicular to each other and have the correct magnitudes.
 
-Below is the math behind this:
-Let
-q = charge (units: C)
-v = velocity of the particle (units: m/s)
-B = magntic field (units: T)
-E = electric Field (units: N/C)
-* is regular multiplication
-x is a cross product
+Below is the math behind this: <br>
+q = charge (units: C) <br>
+v = velocity of the particle (units: m/s) <br>
+B = magntic field (units: T) <br>
+E = electric field (units: N/C) <br>
+Fm = magnetic force (units: N) <br>
+Fe = electric force (units: N) <br>
+\* is regular multiplication <br>
+x is a cross product 
 
-Magnetic Force: Fm = q * v x B
-Electric Force: Fe = q E
-Fm = Fe
-q * v x B = q E
-v x B = E
+Fm = q * v x B <br>
+Fe = q E <br>
+Fm = Fe <br>
+q * v x B = q E <br>
+v x B = E <br>
 
 To obtain the proper directions of the fields, we must use the right hand rule to understand the direction of the magnetic force and have it opposite in direction to the electric force. Using the sign conventions implemented in this game, the magnetic field and electric field must have opposite signs.
 
