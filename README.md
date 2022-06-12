@@ -1,6 +1,8 @@
 # Velocity Selector Game
 
-This is a physics game where users solve questions about velocity selectors. With a visual animation of the velocity selector and a free simulation mode, users can use this game to better understand the physics of charged particles moving through magnetic and electric fields.
+This is a physics game where users solve questions about velocity selectors. With a visual animation of the velocity selector and a free simulation mode, users can use this game to better understand the physics of charged particles moving through magnetic and electric fields. The game is implemented as a website using JavaScript.
+
+![Game Screenshot](/GameScreenshot.png)
 
 ## Overview of the Game
 
