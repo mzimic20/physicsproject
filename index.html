@@ -25,13 +25,13 @@
 	Electric field <span id='efo'></span>
 	<br>
 	<input type="range" min="-200" max="200" value="0" class="slider" id="electric_field_slider">
-	<input type="checkbox" id="electric_field_box">
+	<input type="checkbox" id="electric_field_box" onclick="electricField()">
 </div>
 <div class="container_slider">
 	Magnetic field <span id='mfo'></span>
 	<br>
 	<input type="range" min="-50" max="50" value="0" class="slider" id="magnetic_field_slider">
-	<input type="checkbox" id="magnetic_field_box">
+	<input type="checkbox" id="magnetic_field_box" onclick="magneticField()">
 </div>
 <div class="container_slider">
 	Charge <span id='co'></span>
@@ -46,16 +46,15 @@
 <br>
 Show trajectory
 <input type="checkbox" id="show_trajectory" onclick="generateTrajectory()">
-<!-- Testing Button -->
 <br><br>
 <button onclick="run()"> Run Simulation </button>
 <br><br>
-<button onclick="submit()"> Submit </button>
-<!-- This next button will  not scale up to having more levels -->
+<button onclick="submit()" id="submit"> Submit </button>
 <button onclick="document.location.reload(true)" id="next"> Next </button>
+<br><br>
+<button onclick="toggleGame()" id="toggle_game"> Free Simulation Mode </button>
 </div>
 <div class="results">
-	<!-- This needs to be better formatted -->
 	<h4 style='text-align: center;' id='score'> Score: 0 </h4>
 	<h3  style="text-align: center;" id="result"> </h3>
 </div>
@@ -65,5 +64,3 @@ Show trajectory
 </body>
 
 </html>
-
-<!-- document.location.reload(true) -->

@@ -17,20 +17,6 @@ magneticField.innerHTML = magneticFieldSlider.value;
 charge.innerHTML = chargeSlider.value;
 velocity.innerHTML = velocitySlider.value;
 
-// Change displayed values when sliders are moved
-electricFieldSlider.oninput = function() {
-    electricField.innerHTML = this.value;
-}
-magneticFieldSlider.oninput = function() {
-    magneticField.innerHTML = this.value;
-}
-chargeSlider.oninput = function() {
-    charge.innerHTML = this.value;
-}
-velocitySlider.oninput = function() {
-    velocity.innerHTML = this.value;
-}
-
 document.getElementById('next').disabled = true;
 
 // initializes score variable in sessionStorage and displays it to test
@@ -49,7 +35,7 @@ function randomSign() {
 // randomly generates one of three questions
 function generateQuestion() {
     var questionType = Math.floor(Math.random() * 3);
-    // given e, b, find v everything works good
+    // given e, b, find v 
     if (questionType == 0) {
         var v = Math.floor(Math.random() * 20 + 1);
         var e = Math.floor(Math.random() * 100) * randomSign();
@@ -63,11 +49,11 @@ function generateQuestion() {
         electricField.innerHTML = e.toFixed(2);
         magneticField.innerHTML = b.toFixed(2);
         charge.innerHTML = q;
-        document.getElementById('electric_field_slider').disabled = true;
-        document.getElementById('magnetic_field_slider').disabled = true;
-        document.getElementById('charge_slider').disabled = true;
+        electricFieldSlider.disabled = true;
+        magneticFieldSlider.disabled = true;
+        chargeSlider.disabled = true;
     }
-    // given e, v, find b works sometimes (problem seems to be when velocity is too low)
+    // given e, v, find b works sometimes
     if (questionType == 1) {
         var b = Math.floor(Math.random() * 25) * randomSign();
         var v = Math.floor(Math.random() * 20 + 1);
@@ -81,11 +67,11 @@ function generateQuestion() {
         electricField.innerHTML = e.toFixed(2);
         velocity.innerHTML = v.toFixed(2);
         charge.innerHTML = q;
-        document.getElementById('electric_field_slider').disabled = true;
-        document.getElementById('velocity_slider').disabled = true;
-        document.getElementById('charge_slider').disabled = true;
+        electricFieldSlider.disabled = true;
+        velocitySlider.disabled = true;
+        chargeSlider.disabled = true;
     }
-    // given b, v, find e works sometimes
+    // given b, v, find e 
     if (questionType == 2) {
         var e = Math.floor(Math.random() * 100) * randomSign();
         var v = Math.floor(Math.random() * 20 + 1);
@@ -99,13 +85,12 @@ function generateQuestion() {
         magneticField.innerHTML = b.toFixed(2);
         velocity.innerHTML = v.toFixed(2);
         charge.innerHTML = q;
-        document.getElementById('magnetic_field_slider').disabled = true;
-        document.getElementById('velocity_slider').disabled = true;
-        document.getElementById('charge_slider').disabled = true;
+        magneticFieldSlider.disabled = true;
+        velocitySlider.disabled = true;
+        chargeSlider.disabled = true;
     }
     return [question, answer, questionType]  
 }
-
 
 function checkApprox(num1, num2, epsilon) {
     if (Math.abs(num1 - num2) <= epsilon) {
@@ -119,7 +104,6 @@ var answer = questionInfo[1];
 var questionType = questionInfo[2];
 document.getElementById('question').innerHTML = question;
 
-// this is kind of ugly but it works
 function submit() {
     if (questionType == 0) {
         if (checkApprox(velocitySlider.value, answer, 1)) {
@@ -250,4 +234,81 @@ function generateTrajectory() {
     else {
         ctx.clearRect(0, 0, c.width, c.height);
     }
+}
+
+
+// Positive B is out of page, Negative B is into page
+// Positive E is down, Negative E is up (conventional current)
+function magneticField() {
+    if (document.getElementById("magnetic_field_box").checked == true) {
+        if (magneticFieldSlider.value > 0) {
+            // draw .'s
+        } 
+        if (magneticFieldSlider.value < 0) {
+            // draw x's
+        }
+    }
+}
+
+function electricField() {
+    if (document.getElementById("electric_field_box").checked == true) {
+        if (electricFieldSlider.value > 0) {
+            // draw down arrow
+        } 
+        if (electricFieldSlider.value < 0) {
+            // draw up arrow
+        }
+    }
+}
+
+// Change displayed values when sliders are moved
+// Updates projected trajectory and field lines (if boxes are checked) when sliders are moved
+electricFieldSlider.oninput = function() {
+    electricField.innerHTML = this.value;
+    ctx.clearRect(0, 0, c.width, c.height);
+    generateTrajectory();
+    magneticField();
+    electricField();
+}
+magneticFieldSlider.oninput = function() {
+    magneticField.innerHTML = this.value;
+    ctx.clearRect(0, 0, c.width, c.height);
+    generateTrajectory();
+    magneticField();
+    electricField();
+}
+chargeSlider.oninput = function() {
+    charge.innerHTML = this.value;
+    ctx.clearRect(0, 0, c.width, c.height);
+    generateTrajectory();
+    magneticField();
+    electricField();
+}
+velocitySlider.oninput = function() {
+    velocity.innerHTML = this.value;
+    ctx.clearRect(0, 0, c.width, c.height);
+    generateTrajectory();
+    magneticField();
+    electricField();
+}
+
+
+// toggle between the main game and a free simulation mode
+// this is a brute force method but it works alright here
+function toggleGame() {
+    if (document.getElementById('toggle_game').innerHTML == ' Free Simulation Mode ') {
+        electricFieldSlider.disabled = false;
+        magneticFieldSlider.disabled = false;
+        chargeSlider.disabled = false;
+        velocitySlider.disabled = false;
+        document.getElementById('question').innerHTML = ''; // if .remove() is used here, the whole page shifts up
+        document.getElementById('score').remove();
+        document.getElementById('result').remove();
+        document.getElementById('submit').remove();
+        document.getElementById('next').remove();
+        document.getElementById('toggle_game').innerHTML = 'Question Mode';
+    }
+    else {
+        document.location.reload(true);
+    }    
 }
