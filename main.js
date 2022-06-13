@@ -239,25 +239,82 @@ function generateTrajectory() {
 
 // Positive B is out of page, Negative B is into page
 // Positive E is down, Negative E is up (conventional current)
-function magneticField() {
-    if (document.getElementById("magnetic_field_box").checked == true) {
-        if (magneticFieldSlider.value > 0) {
-            // draw .'s
-        } 
-        if (magneticFieldSlider.value < 0) {
-            // draw x's
-        }
-    }
-}
 
-function electricField() {
+function electricFieldLines() {
     if (document.getElementById("electric_field_box").checked == true) {
+        ctx.beginPath();
         if (electricFieldSlider.value > 0) {
             // draw down arrow
+            for (let i = 1; i < 4; i++) {
+                ctx.moveTo(70 + i * 182, 175);
+                ctx.lineTo(80 + i * 182, 175);
+                ctx.lineTo(75 + i * 182, 225);
+                ctx.fillStyle = "#2bcc2e";
+                ctx.fill();
+            }
         } 
         if (electricFieldSlider.value < 0) {
             // draw up arrow
+            for (let i = 1; i < 4; i++) {
+                ctx.moveTo(70 + i * 182, 225);
+                ctx.lineTo(80 + i * 182, 225);
+                ctx.lineTo(75 + i * 182, 175);
+                ctx.fillStyle = "#2bcc2e";
+                ctx.fill();
+            }
         }
+    }
+    else {
+        ctx.clearRect(0, 0, c.width, c.height);
+    }
+}
+
+function magneticFieldLines() {
+    if (document.getElementById("magnetic_field_box").checked == true) {
+        if (magneticFieldSlider.value < 0) {
+            // draw .'s
+            for (let i = 1; i < 5; i++) {
+                ctx.beginPath();
+                ctx.arc(75 + i * 145, 100, 3, 0, Math.PI * 2, true);
+                ctx.fillStyle = "#264aed";
+                ctx.fill();
+            }
+            for (let i = 1; i < 5; i++) {
+                ctx.beginPath();
+                ctx.arc(75 + i * 145, 300, 3, 0, Math.PI * 2, true);
+                ctx.fillStyle = "#264aed";
+                ctx.fill();
+            }
+        } 
+        if (magneticFieldSlider.value > 0) {
+            // draw x's
+            ctx.beginPath();
+            for (let i = 1; i < 5; i++) {
+                let x = 75 + i * 145;
+                ctx.moveTo(x - 3, 97);
+                ctx.lineTo(x + 3, 103);
+                ctx.strokeStyle = "#264aed";
+                ctx.stroke();
+                ctx.moveTo(x - 3, 103);
+                ctx.lineTo(x + 3, 97);
+                ctx.strokeStyle = "#264aed";
+                ctx.stroke();
+            }
+            for (let i = 1; i < 5; i++) {
+                let x = 75 + i * 145;
+                ctx.moveTo(x - 3, 297);
+                ctx.lineTo(x + 3, 303);
+                ctx.strokeStyle = "#264aed";
+                ctx.stroke();
+                ctx.moveTo(x - 3, 303);
+                ctx.lineTo(x + 3, 297);
+                ctx.strokeStyle = "#264aed";
+                ctx.stroke();
+            }
+        }
+    }
+    else {
+        ctx.clearRect(0, 0, c.width, c.height);
     }
 }
 
@@ -267,29 +324,29 @@ electricFieldSlider.oninput = function() {
     electricField.innerHTML = this.value;
     ctx.clearRect(0, 0, c.width, c.height);
     generateTrajectory();
-    magneticField();
-    electricField();
+    magneticFieldLines();
+    electricFieldLines();
 }
 magneticFieldSlider.oninput = function() {
     magneticField.innerHTML = this.value;
     ctx.clearRect(0, 0, c.width, c.height);
     generateTrajectory();
-    magneticField();
-    electricField();
+    magneticFieldLines();
+    electricFieldLines();
 }
 chargeSlider.oninput = function() {
     charge.innerHTML = this.value;
     ctx.clearRect(0, 0, c.width, c.height);
     generateTrajectory();
-    magneticField();
-    electricField();
+    magneticFieldLines();
+    electricFieldLines();
 }
 velocitySlider.oninput = function() {
     velocity.innerHTML = this.value;
     ctx.clearRect(0, 0, c.width, c.height);
     generateTrajectory();
-    magneticField();
-    electricField();
+    magneticFieldLines();
+    electricFieldLines();
 }
 
 
@@ -312,3 +369,4 @@ function toggleGame() {
         document.location.reload(true);
     }    
 }
+
