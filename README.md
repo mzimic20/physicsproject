@@ -2,16 +2,16 @@
 
 This is a physics game where users solve questions about velocity selectors. With a visual animation of the velocity selector and a free simulation mode, users can use this game to better understand the physics of charged particles moving through magnetic and electric fields. The game is implemented as a website using JavaScript.
 
-![Game Screenshot](/GameScreenshot.png)
+![Game Screenshot](/screenshot.png)
 
 ## Overview of the Game
 
 In this game, users must try to shoot a particle in a straight line through a region of uniform electric and magnetic fields. They are given questions where they must solve for an unknown variable in order to move the particle in a straight line.
 
 There are four variables that can be changed in this game: Electric Field, Magnetic Field, Velocity, and Charge. There are three kinds of problems in this game:
-1) Find velocity given electric field, magnetic field, and charge. 
-2) Find magnetic field given electric field, velocity, and charge. 
-3) Find electric field given magnetic field, velocity, and charge. 
+1) Find velocity given electric field, magnetic field, and charge.
+2) Find magnetic field given electric field, velocity, and charge.
+3) Find electric field given magnetic field, velocity, and charge.
 
 In addition to the main game mode, users can switch to a free simulation mode. Here, they can toggle all variables freely and experiment with how the particle will move using the visual features described below.
 
@@ -23,7 +23,7 @@ They can check boxes that display the electric and magnetic field lines. A paral
 
 ## Overview of the Physics
 
-A velocity selector is a region of uniform electric and magnetic field in which a charged particle will move in a 
+A velocity selector is a region of uniform electric and magnetic field in which a charged particle will move in a
 straight line. This happens when the magnetic force and the electric force are equal in magntidue and opposite in direction. For this to happen, the two fields and the velocity of the particle must all be perpendicular to each other and have the correct magnitudes.
 
 Below is the math behind this: <br>
@@ -34,7 +34,7 @@ E = electric field (units: N/C) <br>
 Fm = magnetic force (units: N) <br>
 Fe = electric force (units: N) <br>
 \* is regular multiplication <br>
-x is a cross product 
+x is a cross product
 
 Fm = q * v x B <br>
 Fe = q E <br>
@@ -55,6 +55,3 @@ A positive magnetic field corresponds to field lines out of the screen. A negati
 
 ## Contributors
 This game was made by Cullen Anderson and Marko Zimic for our final project in AP Physics C at Stuyvesant High School.
-
-
-

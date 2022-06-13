@@ -42,7 +42,7 @@ function generateQuestion() {
         var b = -e / v;
         var q = randomSign();
         var answer = v;
-        var question = `Given E = ${e.toFixed(2)} N/C, B = ${b.toFixed(2)} T, and q = ${q} C. The particle is to be shot in a straight line. What initial velocity should it have? Answer is ${answer} m/s`;
+        var question = `Given E = ${e.toFixed(2)} N/C, B = ${b.toFixed(2)} T, and q = ${q} C. The particle is to be shot in a straight line. What initial velocity should it have?`;
         electricFieldSlider.value = e;
         magneticFieldSlider.value = b;
         chargeSlider.value = q;
@@ -60,7 +60,7 @@ function generateQuestion() {
         var e = v * -b;
         var q = randomSign();
         var answer = b;
-        var question = `Given E = ${e.toFixed(2)} N/C, v = ${v.toFixed(2)} m/s, and q = ${q} C. The particle is to be shot in a straight line. What should the magnetic field be? Answer is ${answer} T`;
+        var question = `Given E = ${e.toFixed(2)} N/C, v = ${v.toFixed(2)} m/s, and q = ${q} C. The particle is to be shot in a straight line. What should the magnetic field be?`;
         electricFieldSlider.value = e;
         velocitySlider.value = v;
         chargeSlider.value = q;
@@ -78,7 +78,7 @@ function generateQuestion() {
         var b = -e / v;
         var q = randomSign();
         var answer = e;
-        var question = `Given B = ${b.toFixed(2)} T, v = ${v.toFixed(2)} m/s, and q = ${q} C. The particle is to be shot in a straight line. What should the electric field be? Answer is ${answer} N/C`;
+        var question = `Given B = ${b.toFixed(2)} T, v = ${v.toFixed(2)} m/s, and q = ${q} C. The particle is to be shot in a straight line. What should the electric field be?`;
         magneticFieldSlider.value = b;
         velocitySlider.value = v;
         chargeSlider.value = q;
